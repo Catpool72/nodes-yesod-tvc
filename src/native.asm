@@ -105,6 +105,7 @@ clear_native:
     push de
     push hl
     xor a
+    ld (LIVE_VALID),a
     ld (display_page),a
     ld a,12
     ld (back_page),a
@@ -1868,6 +1869,17 @@ collection_pair:
     pop hl
     ret
 refresh_hud:
+    ld a,(hud_dirty)
+    or a
+    jr nz,.go
+    ld a,(hud_tick)         ; no flagged change: still rescan every 4th frame
+    inc a                   ; (direct attribute writers that do not set the flag)
+    ld (hud_tick),a
+    and 3
+    ret nz
+.go:
+    xor a
+    ld (hud_dirty),a
     ld hl,(font_id)
     push hl
     ld hl,4
@@ -2317,67 +2329,112 @@ native_pairs:
 ; Game-logic fast paths (bit-exact replacements for original Spectrum loops).
 ; MovingObjects: 94 records of 8 bytes; byte 7 bit 7 = object exists.
 MOVING_OBJECTS EQU $AAED
-; Pass 1 of the per-frame object update (original $A491..$A4BA). Dead objects
-; are skipped with a tight pointer scan; live ones run the original body.
-logic_pass1:
+; Live-object list: the "exists" bit (byte 7, bit 7) only changes when the
+; original room-change code ($AA25..$AA6D) recomputes it, so the indices of the
+; existing objects are collected once, right after that loop ($AA6D hook), and
+; both per-frame passes walk only those entries.
+LIVE_VALID EQU $9800            ; list built since the last recompute
+LIVE_END   EQU $9801            ; low byte of the end of the list
+LIVE_P2    EQU $9808            ; pass 2 cursor (low byte)
+LIVE_LIST  EQU $9810            ; ascending object indices
+logic_rebuild_exit:
+    call live_build
+    exx
+    ex af,af'
+    ret
+live_build:
     ld hl,MOVING_OBJECTS+7
-    ld de,8
-    ld b,$5e
-.scan:
-    ld a,(hl)
+    ld de,LIVE_LIST
+    ld bc,$5e00
+.s:
+    bit 7,(hl)
+    jr z,.n
+    ld a,c
+    ld (de),a
+    inc e
+.n:
+    ld a,8
+    add a,l
+    ld l,a
+    adc a,h
+    sub l
+    ld h,a
+    inc c
+    djnz .s
+    ld a,e
+    ld (LIVE_END),a
+    ld a,1
+    ld (LIVE_VALID),a
+    ret
+; Pass 1 of the per-frame object update (original $A491..$A4BA).
+logic_pass1:
+    ld a,(LIVE_VALID)
     or a
-    jp m,.live
-.next:
-    add hl,de
-    djnz .scan
-    ld iy,MOVING_OBJECTS+$5e*8
-    jp $a4bb
-.live:
-    push bc
+    call z,live_build
+    ld hl,LIVE_LIST
+.loop:
+    ld a,(LIVE_END)
+    cp l
+    jr z,.end
+    ld a,(hl)
+    inc l
     push hl
-    push hl
-    pop iy
-    ld de,$fff9
-    add iy,de               ; IY = object record
-    ld a,$5e
-    sub b
-    ld c,a
-    ld b,0
+    ld e,a
+    ld d,0
     ld hl,$e180
-    add hl,bc               ; HL = $E180 + index
+    add hl,de               ; HL = $E180 + index
+    ex de,hl                ; DE = timer, HL = index
+    add hl,hl
+    add hl,hl
+    add hl,hl
+    ld bc,MOVING_OBJECTS
+    add hl,bc
+    push hl
+    pop iy                  ; IY = object record
+    ex de,hl
     res 7,(iy+1)
     bit 7,(hl)
-    jr z,.done
+    jr z,.skip
     set 7,(iy+1)
     call $a8ac
-.done:
+.skip:
     pop hl
-    pop bc
-    ld de,8
-    jr .next
-; Pass 2 loop head (original $A4D5): skip dead objects quickly, then continue
-; at the original body ($A4E3) for the next live object. IY = record, B = left,
-; DE = 8 on entry.
+    jr .loop
+.end:
+    ld iy,MOVING_OBJECTS+$5e*8
+    jp $a4bb
+; Pass 2 loop head (original $A4D5): jump straight to the next existing object
+; and continue at the original body ($A4E3). B = 94 - index on entry of the
+; first call, DE = 8.
 logic_pass2:
-    push iy
-    pop hl
-    ld a,l
-    add a,7
+    ld a,b
+    cp $5e
+    jr nz,.next
+    ld a,LOW LIVE_LIST
+    ld (LIVE_P2),a
+.next:
+    ld a,(LIVE_P2)
     ld l,a
-    jr nc,.chk
-    inc h
-.chk:
-    ld a,(hl)
-    or a
-    jp m,.live
+    ld h,HIGH LIVE_LIST
+    ld a,(LIVE_END)
+    cp l
+    jp z,$a594
+    ld c,(hl)
+    inc l
+    ld a,l
+    ld (LIVE_P2),a
+    ld a,$5e
+    sub c
+    ld b,a                  ; B = 94 - index
+    ld l,c
+    ld h,0
+    add hl,hl
+    add hl,hl
+    add hl,hl
+    ld de,MOVING_OBJECTS
     add hl,de
-    djnz .chk
-    jp $a594
-.live:
     push hl
     pop iy
-    ld de,$fff9
-    add iy,de
     ld de,8
     ld a,b
     inc a
@@ -2497,6 +2554,15 @@ font_lookup:
     ld c,(hl)
     ex de,hl
     ret
+; Replaces "LD A,(HL) / XOR 3 / LD (HL),A" at $9B5F: the original flips a HUD
+; attribute directly, so tell refresh_hud to rescan.
+hud_flip:
+    ld a,(hl)
+    xor 3
+    ld (hl),a
+    ld a,1
+    ld (hud_dirty),a
+    ret
     ALIGN 256
 reverse_table:
     DUP 256, V
@@ -2574,5 +2640,7 @@ changed_flag EQU bss+675
 tmp_reg EQU bss+676
 en_rect EQU bss+680
 bar_key EQU bss+684               ; HL,B,C of the last drawn bar + valid flag
-bss_end EQU bss+689
+hud_dirty EQU bss+689
+hud_tick EQU bss+690
+bss_end EQU bss+691
     ASSERT bss_end <= $1f00

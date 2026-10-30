@@ -198,3 +198,13 @@ játékállapot bájtra azonos; képkockánként kb. 6-7% kevesebb ciklus.
 Megjegyzés a teszteléshez: az eredeti játék a véletlent az $A45C-n a
 LD A,R / LD H,A / LD A,(HL) sorral a ROM-ból olvassa, ami TVC-n a kód
 elrendezésétől függ; az összehasonlító tesztben ezt rögzíteni kell.
+
+--- v13: élő objektumlista és HUD "piszkos" jelző ---
+A játéklogika minden képkockán mind a 94 mozgó objektumot végigjárta, pedig a
+"létezik" bitek csak szobaváltáskor változnak. Új élő lista (live_build,
+logic_pass1/pass2): szobaváltáskor egyszer épül, a két logikai ciklus csak a
+létező objektumokon fut végig. A HUD (refresh_hud) csak jelzett változáskor
+vagy minden 4. képkockán (biztonsági újraellenőrzés a jelző nélkül író
+kódokra) vizsgálja újra az attribútumtáblát.
+Mérés (azonos forgatókönyv): ~104,2K ciklus/képkocka a v12 116,45K-jával
+szemben (kb. -10,5%). Képernyő, HUD és játékállapot bájtra azonos.

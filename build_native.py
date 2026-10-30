@@ -43,7 +43,7 @@ put(0x91a5,bytes.fromhex('ddcb008ec9')) # RES1,(IX); RET (no old renderer)
 # Geometry now directly addresses material grid, no Spectrum attribute address.
 put(0x940b,b'\xf9')
 for a,v in [(0x8ff0,0),(0x9008,0xffe0),(0x9050,0),(0x909c,0xffff),(0x90d5,0),(0x9123,0xffe0),(0xa5f6,0)]:word(a,v)
-put(0x8280,b'\x02');put(0xa0eb,b'\x03');put(0x9b61,b'\x03')
+put(0x8280,b'\x02');put(0xa0eb,b'\x03')
 for i in range(5):word(0x62ac+4*i,i)
 word(0x8605,5);word(0x8608,sy['font_id']);word(0x89eb,sy['font_id'])
 hook(0x8379,'collection_pair',0xcd)
@@ -75,6 +75,8 @@ put(0x5dfc,bytes(48));put(0x92eb,bytes(0x9397-0x92eb));put(0x940e,bytes(0x9907-0
 put(0x8704,orig[0x8704-0x4000:0x8787-0x4000])
 hook(0x876e,'music_tone')
 hook(0x8731,'music_key',0xcd)
+hook(0x9b5f,'hud_flip',0xcd);put(0x9b62,b'\0')
+hook(0xaa6d,'logic_rebuild_exit',0xc3)
 (R/'build/game.bin').write_bytes(m[0x5b00:])
 for n in ['game','assets1','assets2']:
  subprocess.run([ZX0,'-f','-b','-q',str(R/'build'/(n+'.bin')),str(R/'build'/(n+'.zx0'))],check=True)
