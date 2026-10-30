@@ -1,0 +1,200 @@
+V09 – EREDETI MENÜ ÉS HANG
+
+Visszaállt az eredeti menü: űrhajós, Odin embléma, eredeti feliratok és elrendezés.
+A grafika továbbra is előre átalakított natív TVC-adatokból rajzolódik.
+Az eredeti vezérlésválasztó feliratok a kép részei; a tényleges TVC-vezérlés
+az alább felsorolt O/P, Space, Q és nyílbillentyűk. Tetszőleges gomb indít.
+Az eredeti menüzene és a játék végi zenei rész TVC hangerő-DAC-on szól.
+Játék közben az eredeti eseményjelzők alapján a TVC hanggenerátora szól;
+a hangeffektekhez nincs CPU-t foglaló várakozó ciklus.
+A menü zene közben is megjegyzi a rövid billentyűlenyomást.
+A v08 indexregiszter nélküli sprite-rajzolása és a kettős puffer megmaradt.
+
+V08 GYORSÍTÁS – TÖBB SPRITE
+
+A sprite-pipeline (régi alakok törlése, eltolás, vágás, pixelrajzolás)
+nem használ IX, IY, IXH, IXL, IYH vagy IYL regisztert.
+Az entitásmezők egyszer, HL-alapú címzéssel kerülnek a munkaváltozókba.
+A másolás előtti vágás kiszűri a teljesen képen kívüli alakokat és sorokat.
+Az eltolás 16 bájtos, kiterített lépésekkel dolgozik; a pixelrajzolók
+B/DJNZ számlálót, HL/DE mutatókat és előre kiválasztott színrutint használnak.
+A sorvégi ugrások és állandók sprite-onként állítódnak be a RAM-kódban.
+A játék megszakításai tiltva vannak; a rajzoló nem reentráns.
+Az eredeti játékmenetben és a regisztermegőrző keretben IX/IY megmaradhat;
+a kritikus natív sprite-útvonalból került ki a használatuk.
+
+Azonos szintetikus rajzolási próba (3,125 MHz, várakozási állapotok és
+VBL-várakozás nélkül, 50 mért kép, két bemelegítő kép után):
+Sprite-ok   v07 ciklus/kép   v08 ciklus/kép   Cikluscsökkenés
+1                  79877            47762             40,2%
+4                 305855           182637             40,3%
+8                 607159           358847             40,9%
+16               1209767           711267             41,2%
+
+A próba azonos 22x32 pixeles alakokat használ, 1 pixeles eltolással,
+vegyes fehér/cián/sárga tintával, minden képen háttér-visszaállítással.
+Ez a sprite-kompozíció költsége; nem garantál ugyanekkora gyorsulást
+a teljes játékban. A valódi sebesség terem- és emulátorfüggő.
+A v07 kettős képpuffere és a képkockajelhez időzített lapváltása megmaradt.
+Továbbra is TVC 64K+ / 128 KB kell; menüzene és TVC-s hangeffektek vannak.
+
+V07 JAVÍTÁS – SPRITE-VILLÓDZÁS
+
+A v06 a megjelenített lapon törölte a régi sprite-okat, majd oda rajzolta az
+újakat. A TVC az átmeneti, sprite nélküli állapotot is kiolvashatta.
+A v07 a nem látható videólapon készíti el a teljes sprite-kompozíciót.
+A kész lapot a CRTC képkockajeléhez időzített egyetlen regiszterírás mutatja meg.
+Mindkét képpuffer saját előző-sprite téglalapokat tart fenn.
+Az állapotjelzők és a talajtörlés mindkét háttérpéldányon frissülnek.
+A natív grafika megmaradt; a képpuffernek felszabadított harmadik videólap
+korábbi adatai most az előző átiratban már nem használt RAM-helyeken vannak.
+
+Fájl: Nodes_Yesod_TVC_native_v09.cas
+Továbbra is TVC 64K+ / 128 KB kell. Sima 64K-n nem fut.
+
+NODES OF YESOD – TVC NATÍV v09
+
+GÉP ÉS INDÍTÁS
+TVC 64K+ szükséges, 128 KB összmemóriával (64 KB RAM + 64 KB videó-RAM).
+Az emulátort is ilyen gépre állítsd. A sima 64K-s gép nem elegendő.
+Ha nincs külön lapozható videó-RAM, a program kiírja: TVC 64K+ / 128 KB KELL.
+A CAS fájlt TVC programként töltsd be; BASIC-ből RUN indítja.
+A menüben tetszőleges gomb indít. A korábbi CAS helyett ezt a kiadást használd.
+
+IRÁNYÍTÁS
+O / P vagy bal / jobb: mozgás.
+Space / Enter / joystick tűz: ugrás.
+Q / fel: vakond.
+A / le: az eredeti játék lefelé vezérlése.
+
+MI LETT ÁTÍRVA?
+- Munkakép: natív TVC, sorfolytonos, 64 bájt/sor, négy szín.
+- Sprite-ok: natív TVC bitplanes, normál és tükrözött változatban.
+- Pályaelemek, karakterek, menük: előre átalakított TVC-adatok.
+- Színek: TVC színbájtok és kétbites tinta/papír értékek.
+- Kijelzők, csillagok, talajtörlés: közvetlen TVC-rajzolás.
+- Sprite-címek: közvetlen natív leírók; nincs régi sprite-adat dekódolása.
+- Betöltő: két videólapra és a felszabadított RAM-ba helyezi a natív adatokat.
+- Kettős képpuffer: az egyik lapot a TVC mutatja, a másikra készül a következő kép.
+- Lapváltás: a CRTC képkockajeléhez igazítva, a látható területen kívül.
+
+Nincs Spectrum-képernyőpuffer, Spectrum-sorrendű képernyőmásolás vagy
+Spectrum-képből TVC-képpé alakítás a futó játékban. A korábbi grafikai
+forrásadatok és rajzolórutinok helyét a kiadott binárisban töröltük.
+Az eredeti Z80 játékmenet, pályák és mozgási szabályok maradtak meg.
+Az ütközési anyagkódok és a pályák logikai tile-térképei játékadatok;
+nem megjelenítési attribútumok. A talajtörlés vezérlő bitfolyama is
+játékmeneti adat, nem képernyőkép.
+A sprite-ok TVC-s átlátszó kompozíciót használnak; a Spectrum
+karaktercellánkénti színütközéseit nem reprodukálják.
+
+KORLÁTOK
+A menüzene az eredeti dallamadatokat és két számlálós keverést használja,
+a TVC hangerő-DAC-jára átírva. A hangmagasság és a tempó a TVC órajele
+és az eltérő kimeneti rutin miatt eltérhet a Spectrumétól.
+A játék két eredeti effektjelzője a TVC hardveres hanggenerátorát vezérli;
+ezek TVC-re alkalmazott hangjelzések, nem az eredeti hullámforma másolatai.
+Nem történt teljes végigjátszás vagy fizikai TVC-n végzett teszt.
+WinTVC-t közvetlenül nem futtattam. Az Ep128web tényleges emulátormagján
+TVC 64K+ / BASIC 1.2 környezetben indult és reagált a vezérlésre.
+A v07-et BASIC 2.2-vel ebben a körben nem ellenőriztem.
+Ezek a próbák a kód betöltését memória-injektálással végzik, ezért a teljes
+kazettás betöltési folyamatot nem helyettesítik.
+A sebesség teremfüggő. A tesztben szereplő fps Z80-ciklusokból számított,
+3,125 MHz-es, memória-várakozások nélküli érték, nem WinTVC-mérés.
+
+FORRÁS ÉS FORDÍTÁS
+A src/spectrum.asm az eredeti játék normalizált disassemblyje: a hardvertől
+független játékmenet fordítási kiindulópontja. A build_native.py eltávolítja
+a régi grafikai adatokat és hardverrutinokat, és a src/native.asm motorra
+irányítja a szükséges belépési pontokat. Ezért a forrásban még megtalálható
+az eredeti implementáció, a futó kiadásban már nem az rajzol.
+A convert_assets.py kizárólag FORDÍTÁSKOR alakít át adatokat.
+A src/needs_128k.tvc már natív TVC bitkép, nem Spectrum-kép.
+
+Függőségek: Python 3, SjASMPlus, ZX0. A programok legyenek a PATH-ban,
+vagy add meg a SJASMPLUS és ZX0 környezeti változókat.
+  python3 build_native.py
+  python3 run_tests.py
+Opcionális valódi emulátormag-próba:
+  EP128WEB_MODULE=<ep128emu.js> TVC_ROM_DIR=<ROM-mappa> node test_ep128web.js
+Ehhez az Ep128web JS/WASM mag és a TVC 1.2 ROM-ok külön szükségesek.
+A második parancshoz C-fordító is kell. A Z80 tesztmag mellékelve van,
+az eredeti MIT licencével. A tesztek címkéiket a lefordított szimbólumokból
+olvassák, tehát a forrás áthelyezése nem igényel kézi címjavítást.
+A nyers adatok a build/ mappába, a CAS a projekt főkönyvtárába kerül.
+
+FORRÁSOK ÉS JOGOSULTAK
+Nodes of Yesod: Odin Computer Graphics, 1985. Az eredeti játék szerzői jogai
+a jogosultakat illetik. A TVC-adapter forrása ebben a csomagban található.
+https://www.icemark.com/downloads/files/nodessrc.zip
+https://www.icemark.com/dataformats/nodesofyesod/index.html
+https://github.com/einar-saukas/ZX0
+https://github.com/z00m128/sjasmplus
+https://github.com/superzazu/z80
+https://github.com/kks2003/Ep128web
+Hardverellenőrzéshez a TVC dokumentációja és az ep128emu TVC-memória-,
+video- és I/O-implementációja szolgált alapul.
+
+--- Inkrementális kompozíció (v10 motor) ---
+Csak azok a sprite-ok törlődnek/rajzolódnak újra, amelyek képe (x, y, h, tinta,
+mutató, tükrözés, aktív) az adott lapon megváltozott, illetve érintkeznek egy
+változott területtel vagy egy copy_dual_rect külső írással. Az IX/IY továbbra
+sincs használva. Mérés (Z80-ciklus/kép, 16 sprite 22x32):
+  v09 alap 711267 | teljes újrarajzolás (1. lépés) 536456
+  álló jelenet 6879 | minden sprite mozog 494581 | véletlen stressz 96556
+A régi "statikus" benchmark már nem reprezentatív. Fizikai TVC / WinTVC teszt nem történt.
+
+--- v10 kiegészítés: nem sprite jellegű költségek ---
+Teljes futásprofil alapján (tools/prof_game.py) a játékidő jelentős része a
+háttértégla-másolás (copy_dual_rect) és a HUD volt, nem a sprite-ok.
+- copy_dual_rect: soronként önmódosított szélesség/lépés, push/pop nélkül.
+- refresh_hud: a 96 karakteres összehasonlítás szűk ciklusban fut, csak eltérésnél rajzol.
+- print_char: bájtonkénti keverés dest = paper ^ ((ink^paper) & glyph), konstansokkal.
+Ellenőrzés: 901 képkockányi, azonos billentyűzetű futás régi és új motorral,
+a HUD sávok (y>=168) képkockánként bitazonosak (tools/test_hash.c).
+Játékmenet (3,125 MHz, várakozás nélkül): 20,5/22,9 fps -> kb. 25 fps.
+Az eredeti Spectrum-játék (tools/spec_run.c, 48K ROM-csonkokkal, 3,5 MHz)
+kb. 67 700 ciklus/ciklusiterációt használ; a JSSpeccy-ben a nodes.sna futtatható.
+
+--- v10 kiegészítés: játéklogika-gyorsítás ---
+Az eredeti mozgó-objektum ciklusok ($A491 és $A4D5) és az időzítő-visszaszámlálás
+($9CC7) halott elemeknél lassú volt; ezek helyett logic_pass1/logic_pass2/
+logic_counters fut (src/native.asm), bitre azonos viselkedéssel.
+Ellenőrzés (tools/test_hash.c, determinisztikus R-olvasással): 901 képkocka,
+régi és új logika mellett a képernyő, HUD, objektumtábla, időzítők és
+entitások képkockánként azonosak; azonos képkockaszámhoz ~9,8% kevesebb
+ciklus. Játékmenet-szimuláció: kb. 25,8 / 28,4 fps (3,125 MHz, várakozás nélkül).
+Az Ep128web-hez rövid fájlnév kell (pl. yesod.cas): load "yesod", run.
+
+--- v10 kiegészítés: menüzene időzítése ---
+A régi TVC-s zenei hurok (hook az OUT-on) 164 T-állapotot használt lépésenként
+3,125 MHz-en, az eredeti Spectrum 77 T-ot 3,5 MHz-en: a menü- és game over zene
+2,43x lassabban és kb. 15 félhanggal mélyebben szólt. Az új music_tone hurok
+(src/native.asm) csak éleknél ír a hangerő-DAC-ba, és a lépést ~67 T-ra tölti ki.
+Mérés (tools/spec_notes.c és tools/test_hash_m.c, 52 hang): a hangok hossza
+a Spectrumhoz képest 1,014-1,016x, vagyis a tempó és a hangmagasság kb. 1,5%-on belül egyezik.
+Valós TVC-n a memória-várakozások és az emulátor hanggenerálása ettől eltérhet.
+
+--- v11 javítás: teleportálás utáni alsó HUD ---
+A "teleporting" képernyő (eredeti $83ED) a teljes videómemóriát törölte, így az
+alsó HUD keretei (ALCHIEMS, LIFE, TIME) eltűntek, és csak a szöveg rajzolódott újra.
+Az eredeti Spectrum csak a felső 21 attribútumsort törli. Új clear_top rutin
+(src/native.asm): csak a felső 168 sort törli (háttér + mindkét oldal), a HUD
+sorokat és szövegtáblákat érintetlenül hagyja. Ellenőrzés: kényszerített
+teleportálás ($83ED) után a HUD pixelszáma régi buildnél 1824 -> 309, újnál
+1824 -> ~1845 (marad). Minden egység- és játékteszt hibátlan.
+
+--- v12: HUD-rajzolás és betűkeresés gyorsítása ---
+A mérés szerint a print_char hívások ~90%-a ugyanazt a karaktert rajzolta újra
+ugyanarra a HUD-cellára, és a native_bar is minden képkockán újrarajzolta
+ugyanazt a sávot. Az új kód kihagyja a változatlan rajzolást (print_char: a
+glyph és a szín megegyezik a már kirajzolttal; native_bar: azonos HL/B/C).
+A font_fetch a glyphindex*rekordhossz szorzatot gyors szorzással számolja
+az ismételt összeadás helyett. A font_lookup átkerült a zene utáni szabad
+helyre, a halott music_dac rutin törölve.
+Ellenőrzés: azonos forgatókönyv mellett (3112 képkocka) a képernyő, a HUD és a
+játékállapot bájtra azonos; képkockánként kb. 6-7% kevesebb ciklus.
+Megjegyzés a teszteléshez: az eredeti játék a véletlent az $A45C-n a
+LD A,R / LD H,A / LD A,(HL) sorral a ROM-ból olvassa, ami TVC-n a kód
+elrendezésétől függ; az összehasonlító tesztben ezt rögzíteni kell.

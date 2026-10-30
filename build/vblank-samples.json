@@ -1,0 +1,290 @@
+[
+  {
+    "line": 285,
+    "frame": 976,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      5,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 62,240  CRTC MA: 0F3E  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0C36  Cnt2: 0F\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 978,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      5,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 70,240  CRTC MA: 0F46  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0CC6  Cnt2: 0F\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 980,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      8,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 63,240  CRTC MA: 0F3F  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0D37  Cnt2: 0F\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 982,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      8,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 76,240  CRTC MA: 0F4C  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0DD1  Cnt2: 0F\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 984,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      11,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 57,240  CRTC MA: 0F39  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0E2B  Cnt2: 0F\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 986,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      11,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 58,240  CRTC MA: 0F3A  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0EAD  Cnt2: 0F\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 988,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      14,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 60,240  CRTC MA: 0F3C  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0F32  Cnt2: 0F\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 990,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      14,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 64,240  CRTC MA: 0F40  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0FB9  Cnt2: 0F\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 992,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      17,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 68,240  CRTC MA: 0F44  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 00F1  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 994,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      17,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 66,240  CRTC MA: 0F42  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 016D  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 996,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      20,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 56,240  CRTC MA: 0F38  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 01D9  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 998,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      20,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 71,240  CRTC MA: 0F47  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0276  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1000,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      23,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 74,240  CRTC MA: 0F4A  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 02FD  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1002,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      23,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 76,240  CRTC MA: 0F4C  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0380  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1004,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      26,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 58,240  CRTC MA: 0F3A  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 03DC  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1006,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      26,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 59,240  CRTC MA: 0F3B  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 045E  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1008,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      29,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 73,240  CRTC MA: 0F49  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 04FA  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1010,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      29,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 74,240  CRTC MA: 0F4A  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 057C  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1012,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      32,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 65,240  CRTC MA: 0F41  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 05EA  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1014,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      32,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 79,240  CRTC MA: 0F4F  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 0686  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1016,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      35,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 58,240  CRTC MA: 0F3A  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 06DC  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1018,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      35,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 59,240  CRTC MA: 0F3B  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 075E  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1020,
+    "display": 0,
+    "sync": 1,
+    "state": [
+      4,
+      38,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 63,240  CRTC MA: 0F3F  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 0C  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 07E7  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  },
+  {
+    "line": 285,
+    "frame": 1022,
+    "display": 48,
+    "sync": 1,
+    "state": [
+      4,
+      38,
+      112
+    ],
+    "io": "CRTC 0-7: 63 40 4B 32  4D 02 3C 42\nCRTC 8-F: 00 03 03 03  00 00 0E>FF\nVidXY: 65,240  CRTC MA: 0F41  RA: 00\nMode: 1  Palette: 00 51 54 55  00\nMem: B0 0  VRAM: 30  IRQ: 0F  Mask: 00\nSnd Freq: 00AF  Cnt1: 086A  Cnt2: 00\nVolume: 00  E/D: 0\n"
+  }
+]

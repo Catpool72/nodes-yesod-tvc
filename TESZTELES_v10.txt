@@ -1,0 +1,20 @@
+Native asset pixels checked: 181288; mismatches: 0
+136 sprites, both directions; 691 glyphs/tiles; retired pixel slots are zero or contain verified native RAM assets.
+checks=799 mismatched_frames=0 frames=800 cycles=90000006 fps=27.78 pc=09ec player=192,65
+COMPOSE_SHARE cycles_in_compose=33712838 of 90000006
+player_y=2..252 rooms: 0 1 2 3 4 18 20
+visible_sprite_writes=0 flips=799 indexed_prefixes=0
+checks=883 mismatched_frames=0 frames=884 cycles=89999995 fps=30.69 pc=160d player=218,0
+COMPOSE_SHARE cycles_in_compose=35656530 of 89999995
+player_y=0..254 rooms: 8 9 10 26 42 58
+visible_sprite_writes=0 flips=883 indexed_prefixes=0
+sprite_cases=5440 failures=0
+erosion_cases=512 failures=0
+visible_sprite_writes=0 flips=5440 indexed_prefixes=0
+BENCH sprites=1 frames=50 cycles_per_frame=3324.0 indexed_prefixes=0
+BENCH sprites=4 frames=50 cycles_per_frame=4035.0 indexed_prefixes=0
+BENCH sprites=8 frames=50 cycles_per_frame=4983.0 indexed_prefixes=0
+BENCH sprites=16 frames=50 cycles_per_frame=6879.0 indexed_prefixes=0
+BENCH moving16 frames=52 cycles_per_frame=494581.0 failures=0 indexed_prefixes=0
+BENCH stress frames=600 cycles_per_frame=96556.2 failures=0 indexed_prefixes=0
+BENCH failures=0 visible_sprite_writes=0

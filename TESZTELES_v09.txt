@@ -1,0 +1,28 @@
+V09 ellenőrzés – 2026-10-28
+
+Fordítás: SjASMPlus, hibák és figyelmeztetések nélkül.
+181288 natív assetpixel: 0 eltérés.
+5440 sprite-vágás/tükrözés/eltolás eset: 0 hiba.
+512 talajtörlési eset: 0 hiba.
+Két automatikus játékmeneti próba: 0 képhiba.
+Kritikus sprite-útvonal: 0 végrehajtott IX/IY prefix.
+Megjelenített sprite-területre írás: 0.
+Rajzolási benchmark változatlan a v08-hoz képest.
+
+Ep128web tényleges TVC 64K+ emulátormag, BASIC 1.2 ROM:
+- eredeti menükép megjelenik;
+- 100 ms indítóbillentyű után játék indul;
+- jobbra mozgás és ugrás működik;
+- 24 lapváltás mindegyike a 285. rasztersoron;
+- menüzene: nem állandó PCM kimenet;
+- effektjelző próba: nem állandó PCM kimenet.
+Az effektpróba közvetlenül az eredeti eseményjelzőt állítja be.
+A hang ellenőrzése PCM-adatokból történt, nem emberi meghallgatással.
+A játékvégi zenei belépés kódja elkészült; teljes végigjátszás nem történt.
+Fizikai TVC és WinTVC teszt nem történt.
+A CAS memória-injektálással indult; teljes kazettabetöltési próba nem történt.
+
+Parancsok:
+python3 build_native.py
+python3 run_tests.py
+node test_ep128web.js

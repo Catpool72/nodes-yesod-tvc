@@ -1,0 +1,46 @@
+V08 ellenőrzési jegyzőkönyv – 2026-10-28
+
+NATÍV ADATOK, JÁTÉKMENET, SPRITE/ERÓZIÓ ÉS TÖBBSPRITE-OS TERHELÉS:
+Native asset pixels checked: 181288; mismatches: 0
+136 sprites, both directions; 691 glyphs/tiles; retired pixel slots are zero or contain verified native RAM assets.
+checks=592 mismatched_frames=0 frames=592 cycles=89999998 fps=20.56 pc=90e3 player=218,120
+player_y=2..252 rooms: 4 20
+visible_sprite_writes=0 flips=592 indexed_prefixes=0
+checks=658 mismatched_frames=0 frames=658 cycles=90000002 fps=22.85 pc=a58c player=36,112
+player_y=88..117 rooms: 8 9 10 11 12
+visible_sprite_writes=0 flips=658 indexed_prefixes=0
+sprite_cases=5440 failures=0
+erosion_cases=512 failures=0
+visible_sprite_writes=0 flips=5440 indexed_prefixes=0
+BENCH sprites=1 frames=50 cycles_per_frame=47762.0 indexed_prefixes=0
+BENCH sprites=4 frames=50 cycles_per_frame=182637.0 indexed_prefixes=0
+BENCH sprites=8 frames=50 cycles_per_frame=358847.0 indexed_prefixes=0
+BENCH sprites=16 frames=50 cycles_per_frame=711267.0 indexed_prefixes=0
+BENCH failures=0 visible_sprite_writes=0
+
+V07 REFERENCIA AZONOS TESZTMAGGAL ÉS AZONOS SPRITE-ADATOKKAL:
+BENCH sprites=1 frames=50 cycles_per_frame=79877.0 indexed_prefixes=35550
+BENCH sprites=4 frames=50 cycles_per_frame=305855.0 indexed_prefixes=124104
+BENCH sprites=8 frames=50 cycles_per_frame=607159.0 indexed_prefixes=242176
+BENCH sprites=16 frames=50 cycles_per_frame=1209767.0 indexed_prefixes=478320
+BENCH failures=0 visible_sprite_writes=0
+
+Az indexed_prefixes futó Z80 utasítások DD/FD prefixeit számolja kizárólag
+a natív compose() meghívásának ideje alatt. Nem statikus bájtkeresés.
+A sprite-pipeline forrásának külön ellenőrzése sem talált indexregisztert.
+A szintetikus tesztben a képkockavárakozás tiltott, hogy a renderköltség
+közvetlenül összehasonlítható legyen. A kiadott CAS-ban a szinkron aktív.
+
+EP128WEB TÉNYLEGES WASM MAG, TVC64K+ / BASIC1.2 / 128 KB:
+sync_available 1
+start [ 1, 5, 111 ]
+after P [ 1, 38, 112 ]
+jump_y 88 114 end [ 1, 38, 101 ]
+flip_samples [{"line":285,"display":48,"sync":1,"state":[1,5,111]},{"line":285,"display":0,"sync":1,"state":[1,5,112]},{"line":285,"display":48,"sync":1,"state":[1,5,112]},{"line":285,"display":0,"sync":1,"state":[1,8,112]},{"line":285,"display":48,"sync":1,"state":[1,8,112]},{"line":285,"display":0,"sync":1,"state":[1,11,112]},{"line":285,"display":48,"sync":1,"state":[1,11,112]},{"line":285,"display":0,"sync":1,"state":[1,14,112]},{"line":285,"display":48,"sync":1,"state":[1,14,112]},{"line":285,"display":0,"sync":1,"state":[1,17,112]},{"line":285,"display":48,"sync":1,"state":[1,17,112]},{"line":285,"display":0,"sync":1,"state":[1,20,112]},{"line":285,"display":48,"sync":1,"state":[1,20,112]},{"line":285,"display":0,"sync":1,"state":[1,23,112]},{"line":285,"display":48,"sync":1,"state":[1,23,112]},{"line":285,"display":0,"sync":1,"state":[1,26,112]},{"line":285,"display":48,"sync":1,"state":[1,26,112]},{"line":285,"display":0,"sync":1,"state":[1,29,112]},{"line":285,"display":48,"sync":1,"state":[1,29,112]},{"line":285,"display":0,"sync":1,"state":[1,32,112]},{"line":285,"display":48,"sync":1,"state":[1,32,112]},{"line":285,"display":0,"sync":1,"state":[1,35,112]},{"line":285,"display":48,"sync":1,"state":[1,35,112]},{"line":285,"display":0,"sync":1,"state":[1,38,112]}]
+REAL_CORE_PASS
+
+Mind a 24 vizsgált lapváltás a 285. rasztersorban történt,
+a látható terület után; a két lap váltakozott. Mozgás és ugrás ellenőrizve.
+A RAM-ban tárolt natív grafikai adatok a játékpróba után is változatlanok.
+Nem teljes végigjátszás. WinTVC és fizikai TVC nincs ebben a körben tesztelve.
+A WASM-teszt memória-injektálással indít, nem a teljes kazettás betöltést teszteli.

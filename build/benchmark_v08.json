@@ -1,0 +1,30 @@
+[
+  {
+    "sprites": 1,
+    "v07_cycles": 79877.0,
+    "v08_cycles": 47762.0,
+    "reduction_percent": 40.20556605781389,
+    "speedup": 1.6723964658096395
+  },
+  {
+    "sprites": 4,
+    "v07_cycles": 305855.0,
+    "v08_cycles": 182637.0,
+    "reduction_percent": 40.28641022706838,
+    "speedup": 1.6746606656920557
+  },
+  {
+    "sprites": 8,
+    "v07_cycles": 607159.0,
+    "v08_cycles": 358847.0,
+    "reduction_percent": 40.8973596702017,
+    "speedup": 1.6919717874191509
+  },
+  {
+    "sprites": 16,
+    "v07_cycles": 1209767.0,
+    "v08_cycles": 711267.0,
+    "reduction_percent": 41.20628187080653,
+    "speedup": 1.7008619829121834
+  }
+]
